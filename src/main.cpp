@@ -1,5 +1,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <glm/vec2.hpp>
+
 #include <iostream>
 
 #include "Renderer/shaderProgram.h"
@@ -24,14 +26,13 @@ GLfloat texCoord[] = {
     0.0f, 0.0f
 };
 
-int g_WindowSizeX = 640;
-int g_WindowSizeY = 480;// g - is global
+glm::ivec2 g_windowSize(640, 480);
 
 void glfwWindowSizeCallback(GLFWwindow* pWindow, int width, int height)
 {
-    g_WindowSizeX = width;
-    g_WindowSizeY = height;
-    glViewport(0, 0, g_WindowSizeX, g_WindowSizeY);
+    g_windowSize.x = width;
+    g_windowSize.y = height;
+    glViewport(0, 0, g_windowSize.x, g_windowSize.y);
 }
 
 void glfwKeyCallback(GLFWwindow* pWindow, int key, int scancode, int action, int mode)
@@ -54,7 +55,7 @@ int main(int argc, char** argv)
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    GLFWwindow* pWindow = glfwCreateWindow(g_WindowSizeX, g_WindowSizeY, "Battle City", nullptr, nullptr);
+    GLFWwindow* pWindow = glfwCreateWindow(g_windowSize.x, g_windowSize.y, "Battle City", nullptr, nullptr);
     if (!pWindow)
     {
         std::cout << "glfwCreateWindow failed!\n";
@@ -102,7 +103,7 @@ int main(int argc, char** argv)
         glGenBuffers(1, &texCoordVBO);
         glBindBuffer(GL_ARRAY_BUFFER, texCoordVBO);
         glBufferData(GL_ARRAY_BUFFER, sizeof(texCoord), texCoord, GL_STATIC_DRAW);
-        GLuint vao = 0;// vectors attribute(array) object
+        GLuint vao = 0;// vectors attribute(array) object 
         glGenVertexArrays(1, &vao);
         glBindVertexArray(vao);
 
