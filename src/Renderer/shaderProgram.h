@@ -22,6 +22,7 @@ namespace Renderer
 	public:
 		bool isCompiled() const { return m_isCompiled; }
 		void use() const;
+		void setInt(const std::string& name, const GLint value); // set uniform for fragment shader
 	private:
 		bool m_isCompiled = false;
 		GLuint m_ID = 0;
