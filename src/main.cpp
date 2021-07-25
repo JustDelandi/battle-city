@@ -9,6 +9,7 @@
 #include "Renderer/shaderProgram.h"
 #include "Resources/resourceManager.h"
 #include "Renderer/texture2D.h"
+#include "Renderer/sprite.h"
 
 GLfloat points[] = {
      0.0f,  50.f, 0.0f,
@@ -82,6 +83,7 @@ int main(int argc, char** argv)
 
     {
         ResourceManager resourceManager(argv[0]);
+
         auto pDefaultShaderProgram = resourceManager.loadShaders("DefaultShader", "res/shaders/vertex.txt", "res/shaders/fragment.txt");
         if (!pDefaultShaderProgram)
         {
@@ -89,8 +91,18 @@ int main(int argc, char** argv)
             return -1;
         }
 
+        auto pSpriteShaderProgram = resourceManager.loadShaders("SpriteShader", "res/shaders/vSprite.txt", "res/shaders/fSprite.txt");
+        if (!pSpriteShaderProgram)
+        {
+            std::cerr << "Can't create  shader program: " << "SpriteShader" << std::endl;
+            return -1;
+        }
+
+
         auto tex = resourceManager.loadTexture("DefaultTexture", "res/textures/map_16x16.png");
 
+        auto pSprite = resourceManager.loadSprite("NewSprite", "DefaultTexture", "SpriteShader", 50, 100);
+        pSprite->setPosition(glm::vec2(300, 100));
         GLuint pointsVBO = 0;
         glGenBuffers(1, &pointsVBO);
         glBindBuffer(GL_ARRAY_BUFFER, pointsVBO);
@@ -134,6 +146,10 @@ int main(int argc, char** argv)
 
         pDefaultShaderProgram->setMatrix4("projectionMat", projectionMatrix);
 
+        pSpriteShaderProgram->use();
+        pSpriteShaderProgram->setInt("tex", 0);
+        pSpriteShaderProgram->setMatrix4("projectionMat", projectionMatrix);
+
         while (!glfwWindowShouldClose(pWindow))
         {
             glClear(GL_COLOR_BUFFER_BIT);
@@ -148,6 +164,9 @@ int main(int argc, char** argv)
 
             pDefaultShaderProgram->setMatrix4("modelMat", modelMatrix_2);
             glDrawArrays(GL_TRIANGLES, 0, 3);
+
+            pSprite->render();
+
 
             glfwSwapBuffers(pWindow);
 
