@@ -3,6 +3,7 @@
 #include<string>
 #include<memory>
 #include<map>
+#include <vector>
 
 namespace Renderer
 {
@@ -28,13 +29,19 @@ public: // metods for textures
 	std::shared_ptr<Renderer::Texture2D> loadTexture(const std::string& textureName, const std::string& texturePath);
 	std::shared_ptr<Renderer::Texture2D> getTextures(const std::string& textureName) const;
 public: //metods for sprites
-
 	std::shared_ptr<Renderer::Sprite> loadSprite(const std::string& spriteName,
 											 	 const std::string& textureName,
 												 const std::string& shaderName,
 												 const unsigned int spriteWidth,
-												 const unsigned int spriteHeight);
+												 const unsigned int spriteHeight,
+												 const std::string& subTextureName = "default");
 	std::shared_ptr<Renderer::Sprite> getSprite(const std::string& spriteName);
+public: //metods for subTextures
+	std::shared_ptr<Renderer::Texture2D> loadTextureAtlas(const std::string textureName,
+														  const std::string texturePath,
+													      const std::vector<std::string> subTextures,
+														  const unsigned int subTextureWidth,
+														  const unsigned int subTextureHeight);
 private:
 	typedef std::map < const std::string, std::shared_ptr<Renderer::ShaderProgram>> ShaderProgramsMap;
 	ShaderProgramsMap m_shaderPrograms;
