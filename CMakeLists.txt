@@ -17,6 +17,10 @@ add_executable(${PROJECT_NAME}
 	src/Renderer/vertexBuffer.h
 	src/Renderer/indexBuffer.cpp
 	src/Renderer/indexBuffer.h
+	src/Renderer/vertexArray.cpp
+	src/Renderer/vertexArray.h
+	src/Renderer/vertexBufferLayout.cpp
+	src/Renderer/vertexBufferLayout.h
 	src/Resources/resourceManager.cpp
 	src/Resources/resourceManager.h
 	src/Resources/stb_image.h
