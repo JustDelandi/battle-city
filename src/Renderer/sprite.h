@@ -6,6 +6,9 @@
 #include <memory>
 #include <string>
 
+#include "indexBuffer.h"
+#include "vertexBuffer.h"
+
 namespace Renderer
 {
 	class Texture2D;
@@ -36,9 +39,10 @@ namespace Renderer
 		glm::vec2 m_size;
 		float m_rotation;
 		GLuint m_VAO;
-		GLuint m_vertexCoordsVBO;
-		GLuint m_textureCoordsVBO;
-		GLuint m_EBO;				// element buffer object
+
+		VertexBuffer m_vertexCoordsBuffer;
+		VertexBuffer m_textureCoordsBuffer;
+		IndexBuffer m_indexBuffer;
 	};
 
 
