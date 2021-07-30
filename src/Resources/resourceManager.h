@@ -54,6 +54,8 @@ public: //metods for animated sprites
 		const unsigned int spriteHeight,
 		const std::string& subTextureName = "default");
 	static std::shared_ptr<RenderEngine::AnimatedSprite> getAnimatedSprite(const std::string& spriteName);
+public: // for rapid json
+	static bool loadJSONResources(const std::string& JSONPath);
 private:
 	typedef std::map < const std::string, std::shared_ptr<RenderEngine::ShaderProgram>> ShaderProgramsMap;
 	static ShaderProgramsMap m_shaderPrograms;

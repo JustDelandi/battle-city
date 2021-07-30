@@ -47,6 +47,7 @@ target_link_libraries(${PROJECT_NAME} glad)
 
 include_directories(external/glm)
 
+include_directories(external/rapidJson/include)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/)
 
