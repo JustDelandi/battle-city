@@ -2,7 +2,7 @@
 
 #include <glad/glad.h>
 
-namespace Renderer
+namespace RenderEngine
 {
 	class IndexBuffer
 	{
@@ -15,10 +15,12 @@ namespace Renderer
 		IndexBuffer& operator=(IndexBuffer&& indexBuffer) noexcept;
 		IndexBuffer(IndexBuffer&& indexBuffer) noexcept;
 	public:
-		void init(const void* data, const unsigned size);
+		unsigned getCount() const { return m_count; }
+		void init(const void* data, const unsigned count);
 		void bind() const;
 		void unbind() const;
 	private:
 		GLuint m_id;
+		unsigned m_count;
 	};
 }

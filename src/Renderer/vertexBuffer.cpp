@@ -1,6 +1,6 @@
 #include "vertexBuffer.h"
 
-namespace Renderer
+namespace RenderEngine
 {
 	VertexBuffer::VertexBuffer()
 		:

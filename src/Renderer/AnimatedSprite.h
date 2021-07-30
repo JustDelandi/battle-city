@@ -6,7 +6,7 @@
 #include <vector>
 #include <stdint.h>
 
-namespace Renderer
+namespace RenderEngine
 {
 	class AnimatedSprite : public Sprite
 	{

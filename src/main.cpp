@@ -5,11 +5,9 @@
 #include <iostream>
 #include <chrono>
 
-#include "Renderer/shaderProgram.h"
 #include "Resources/resourceManager.h"
-#include "Renderer/texture2D.h"
-#include "Renderer/sprite.h"
-#include "Renderer/AnimatedSprite.h"
+
+#include "Renderer/renderer.h"
 
 #include "Game/game.h"
 
@@ -20,7 +18,7 @@ void glfwWindowSizeCallback(GLFWwindow* pWindow, int width, int height)
 {
 	g_windowSize.x = width;
 	g_windowSize.y = height;
-	glViewport(0, 0, g_windowSize.x, g_windowSize.y);
+	RenderEngine::Renderer::setViewPort(width, height, 0, 0);
 }
 
 void glfwKeyCallback(GLFWwindow* pWindow, int key, int scancode, int action, int mode)
@@ -63,15 +61,13 @@ int main(int argc, char** argv)
 		std::cout << "gladLoadGL failed!\n";
 		return -1;
 	}
-	std::cout << "Renderer: " << glGetString(GL_RENDERER) << std::endl;
-	std::cout << "OpenGL version: " << glGetString(GL_VERSION) << std::endl;
+	std::cout << "Renderer: " << RenderEngine::Renderer::getRendererString() << std::endl;
+	std::cout << "OpenGL version: " << RenderEngine::Renderer::getVersionString() << std::endl;
+
+	RenderEngine::Renderer::setClearColor(0, 0, 0, 1);
 
 	ResourceManager::setExecutablePath(argv[0]);
 	g_game.init();
-	glClearColor(0, 0, 0, 1);
-
-
-
 	auto lastTime = std::chrono::high_resolution_clock::now();
 
 	while (!glfwWindowShouldClose(pWindow))
@@ -80,7 +76,9 @@ int main(int argc, char** argv)
 		uint64_t duration = std::chrono::duration_cast<std::chrono::nanoseconds>(currentTime - lastTime).count();
 		lastTime = currentTime;
 		g_game.update(duration);
-		glClear(GL_COLOR_BUFFER_BIT);
+
+		RenderEngine::Renderer::clear();
+
 		g_game.render();
 
 		glfwSwapBuffers(pWindow);
