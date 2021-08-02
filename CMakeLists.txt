@@ -5,6 +5,7 @@ project(${PROJECT_NAME})
 
 add_executable(${PROJECT_NAME} 
 	src/main.cpp
+
 	src/Renderer/shaderProgram.cpp
 	src/Renderer/shaderProgram.h
 	src/Renderer/texture2D.cpp
@@ -23,14 +24,22 @@ add_executable(${PROJECT_NAME}
 	src/Renderer/vertexBufferLayout.h
 	src/Renderer/renderer.cpp
 	src/Renderer/renderer.h
+
 	src/Resources/resourceManager.cpp
 	src/Resources/resourceManager.h
 	src/Resources/stb_image.h
+
 	src/Game/game.cpp
 	src/Game/game.h
-	src/Game/tank.cpp
-	src/Game/tank.h
+	src/Game/level.cpp
+	src/Game/level.h
 
+	src/Game/GameObjects/tank.cpp
+	src/Game/GameObjects/tank.h
+	src/Game/GameObjects/iGameObject.cpp
+	src/Game/GameObjects/iGameObject.h
+	src/Game/GameObjects/brickWall.cpp
+	src/Game/GameObjects/brickWall.h
 )
 
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)

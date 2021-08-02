@@ -4,8 +4,9 @@
 #include <array>
 #include <glm/vec2.hpp>
 #include <memory>
-class Tank;
 
+class Tank;
+class Level;
 class Game
 {
 public:
@@ -27,4 +28,5 @@ private:
 	glm::ivec2 m_windowSize;
 	EGameState m_eCurrentGameState;
 	std::unique_ptr<Tank> m_pTank;
+	std::unique_ptr<Level> m_pLevel;
 };

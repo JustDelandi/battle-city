@@ -36,8 +36,6 @@ public: //metods for sprites
 	static std::shared_ptr<RenderEngine::Sprite> loadSprite(const std::string& spriteName,
 											 	 const std::string& textureName,
 												 const std::string& shaderName,
-												 const unsigned int spriteWidth,
-												 const unsigned int spriteHeight,
 												 const std::string& subTextureName = "default");
 	static std::shared_ptr<RenderEngine::Sprite> getSprite(const std::string& spriteName);
 public: //metods for subTextures
@@ -50,12 +48,12 @@ public: //metods for animated sprites
 	static std::shared_ptr<RenderEngine::AnimatedSprite> loadAnimatedSprite(const std::string& spriteName,
 		const std::string& textureName,
 		const std::string& shaderName,
-	    const unsigned int spriteWidth,
-		const unsigned int spriteHeight,
 		const std::string& subTextureName = "default");
 	static std::shared_ptr<RenderEngine::AnimatedSprite> getAnimatedSprite(const std::string& spriteName);
 public: // for rapid json
 	static bool loadJSONResources(const std::string& JSONPath);
+
+	static const std::vector<std::vector<std::string>>& getLevels() { return m_levels; };
 private:
 	typedef std::map < const std::string, std::shared_ptr<RenderEngine::ShaderProgram>> ShaderProgramsMap;
 	static ShaderProgramsMap m_shaderPrograms;
@@ -70,6 +68,8 @@ private:
 
 	typedef std::map< const std::string, std::shared_ptr<RenderEngine::AnimatedSprite>> AnimatedSpritesMap;
 	static AnimatedSpritesMap m_animatedSprites;
+
+	static std::vector<std::vector<std::string>> m_levels;
 private:
 	static std::string getFileString(const std::string& relativeFilePath);
 };

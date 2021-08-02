@@ -5,14 +5,11 @@
 
 namespace RenderEngine
 {
-	AnimatedSprite::AnimatedSprite(const std::shared_ptr<Texture2D> pTexture,
-		const std::string initialSubTexture,
-		const std::shared_ptr<ShaderProgram> pShaderProgram,
-		const glm::vec2& position,
-		const glm::vec2& size,
-		const float rotation)
+	AnimatedSprite::AnimatedSprite(std::shared_ptr<Texture2D> pTexture,
+		std::string initialSubTexture,
+		std::shared_ptr<ShaderProgram> pShaderProgram)
 		:
-		Sprite(std::move(pTexture), std::move(initialSubTexture), std::move(pShaderProgram), position, size, rotation)
+		Sprite(std::move(pTexture), std::move(initialSubTexture), std::move(pShaderProgram))
 	{
 		m_pCurrentAnimationDurations = m_statesMap.end();
 	}
@@ -60,7 +57,7 @@ namespace RenderEngine
 		}
 	}
 
-	void AnimatedSprite::render() const
+	void AnimatedSprite::render(const glm::vec2& position, const glm::vec2& size, const float rotation) const
 	{
 		if (m_dirty)
 		{
@@ -79,7 +76,7 @@ namespace RenderEngine
 			m_dirty = false;
 		}
 		
-		Sprite::render();
+		Sprite::render(position, size, rotation);
 
 	}
 
