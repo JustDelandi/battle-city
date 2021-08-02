@@ -16,7 +16,7 @@ namespace RenderEngine
 
 	void AnimatedSprite::insertState(const std::string& state, std::vector < std::pair<std::string, uint64_t>> subTexturesDuration)
 	{
-		m_statesMap.emplace(std::move(state), std::move(subTexturesDuration));
+		m_statesMap.emplace(state, std::move(subTexturesDuration));
 	}
 
 	void AnimatedSprite::update(const uint64_t delta)

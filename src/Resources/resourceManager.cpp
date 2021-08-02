@@ -158,9 +158,9 @@ std::shared_ptr<RenderEngine::Sprite> ResourceManager::getSprite(const std::stri
 	return nullptr;
 }
 
-std::shared_ptr<RenderEngine::Texture2D> ResourceManager::loadTextureAtlas(const std::string textureName,
-	const std::string texturePath,
-	const std::vector<std::string> subTextures,
+std::shared_ptr<RenderEngine::Texture2D> ResourceManager::loadTextureAtlas(std::string textureName,
+	std::string texturePath,
+	std::vector<std::string> subTextures,
 	const unsigned int subTextureWidth,
 	const unsigned int subTextureHeight)
 {

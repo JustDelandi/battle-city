@@ -68,7 +68,7 @@ namespace RenderEngine {
 
 	void Texture2D::addSubTexture(const std::string& name, const glm::vec2& leftBottomUV, const glm::vec2& rightTopUV)
 	{
-		m_subTextures.emplace(std::move(name), SubTexture2D(leftBottomUV, rightTopUV));
+		m_subTextures.emplace(name, SubTexture2D(leftBottomUV, rightTopUV));
 	}
 
 	const Texture2D::SubTexture2D& Texture2D::getSubTexture(const std::string& name) const

@@ -2,7 +2,7 @@
 
 #include "../../Renderer/sprite.h"
 
-BrickWall::BrickWall(const std::shared_ptr<RenderEngine::Sprite> pSprite, const glm::vec2& position, const glm::vec2& size, const float rotation)
+BrickWall::BrickWall(std::shared_ptr<RenderEngine::Sprite> pSprite, const glm::vec2& position, const glm::vec2& size, const float rotation)
     : 
     IGameObject(position, size, rotation), 
     m_pCurrentSprite(std::move(pSprite))

@@ -39,9 +39,9 @@ public: //metods for sprites
 												 const std::string& subTextureName = "default");
 	static std::shared_ptr<RenderEngine::Sprite> getSprite(const std::string& spriteName);
 public: //metods for subTextures
-	static std::shared_ptr<RenderEngine::Texture2D> loadTextureAtlas(const std::string textureName,
-														  const std::string texturePath,
-													      const std::vector<std::string> subTextures,
+	static std::shared_ptr<RenderEngine::Texture2D> loadTextureAtlas(std::string textureName,
+														  std::string texturePath,
+													      std::vector<std::string> subTextures,
 														  const unsigned int subTextureWidth,
 														  const unsigned int subTextureHeight);
 public: //metods for animated sprites
